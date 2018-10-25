@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Lesson2 {
+public class BaseStructure {
 
 	public static void main(String[] args) {
 		reverseArray();
@@ -12,18 +12,18 @@ public class Lesson2 {
 		printMatrix();
 		System.out.println();
 
-		int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+		final int[] arr = {1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
 		System.out.println(getMaxFromArray(arr));
 		System.out.println(getMinFromArray(arr));
 		System.out.println();
 
-		int[] arr1 = {1, 1, 1, 2, 1};
+		final int[] arr1 = {1, 1, 1, 2, 1};
 		System.out.println(checkBalance(arr1));
 
-		int[] arr2 = {2, 1, 1, 2, 1};
+		final int[] arr2 = {2, 1, 1, 2, 1};
 		System.out.println(checkBalance(arr2));
 
-		int[] arr3 = {10, 0, 10};
+		final int[] arr3 = {10, 0, 10};
 		System.out.println(checkBalance(arr3));
 		System.out.println();
 
@@ -74,11 +74,8 @@ public class Lesson2 {
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
-				if (i == j || n - i - 1 == j) {
-					arr[i][j] = 1;
-				} else {
-					arr[i][j] = 0;
-				}
+				final boolean isDiagonal = i == j || n - i - 1 == j;
+				arr[i][j] = isDiagonal ? 1 : 0;
 			}
 		}
 
@@ -111,48 +108,43 @@ public class Lesson2 {
 
 	private static boolean checkBalance(int[] arr) {
 		int n = arr.length;
-		boolean check = false;
 		int leftSum = arr[0];
 		int rightSum = arr[n - 1];
 
-		if (leftSum == rightSum) {
-			return true;
-		}
+		if (leftSum == rightSum) return true;
 
 		int middleIndex = n / 2;
+		boolean isEqualSum = false;
 
 		for (int i = 1; i < middleIndex; i++) {
 			leftSum += arr[i];
 			rightSum += arr[n - i];
 
 			if (leftSum == rightSum) {
-				 check = true;
+				 isEqualSum = true;
 				 break;
 			}
 		}
 
-		if (!check && n % 2 != 0) {
+		boolean isOddLengthOfArray = n % 2 != 0;
+		if (!isEqualSum && isOddLengthOfArray) {
 			int middleItem = arr[middleIndex + 1];
-			check = (leftSum + middleItem == rightSum);
+			isEqualSum = (leftSum + middleItem == rightSum);
 
-			if (!check) {
-				check = (leftSum == middleItem + rightSum);
+			if (!isEqualSum) {
+				isEqualSum = (leftSum == middleItem + rightSum);
 			}
 		}
 
-		return check;
+		return isEqualSum;
 	}
 
 	private static int[] shiftToStep(int[] arr, int n) {
 		int length = arr.length;
 
-		if (n == 0) {
-			return arr;
-		}
+		if (n == 0) return arr;
 
-		if (Math.abs(n) >= length) {
-			return new int[length];
-		}
+		if (Math.abs(n) >= length) return new int[length];
 
 		if (n > 0) {
 			for (int i = length - 1; i >= 0; i--) {
