@@ -54,19 +54,13 @@ public class CrossZiro {
 		int count = 0;
 
 		for (int i = x; i >= 0; i--) {
-			if (map[y][i] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[y][i] == symb) count++;
+			else break;
 		}
 
 		for (int i = x; i < size; i++) {
-			if (map[y][i] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[y][i] == symb) count++;
+			else break;
 		}
 
 		return count - 1 == dotsToWin;
@@ -76,19 +70,13 @@ public class CrossZiro {
 		int count = 0;
 
 		for (int i = y; i >= 0; i--) {
-			if (map[i][x] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[i][x] == symb) count++;
+			else break;
 		}
 
 		for (int i = y; i < size; i++) {
-			if (map[i][x] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[i][x] == symb) count++;
+			else break;
 		}
 
 		return count - 1 == dotsToWin;
@@ -98,19 +86,13 @@ public class CrossZiro {
 		int count = 0;
 
 		for (int i = y, j = x; i < size && j >= 0; i++, j--) {
-			if (map[i][j] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[i][j] == symb) count++;
+			else break;
 		}
 
 		for (int i = y, j = x; i >= 0 && j < size; i--, j++) {
-			if (map[i][j] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[i][j] == symb) count++;
+			else break;
 		}
 
 		return count - 1 == dotsToWin;
@@ -120,19 +102,13 @@ public class CrossZiro {
 		int count = 0;
 
 		for (int i = y, j = x; i < size && j < size; i++, j++) {
-			if (map[i][j] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[i][j] == symb) count++;
+			else break;
 		}
 
 		for (int i = y, j = x; i >= 0 && j >= 0; i--, j--) {
-			if (map[i][j] == symb) {
-				count++;
-			} else {
-				break;
-			}
+			if (map[i][j] == symb) count++;
+			else break;
 		}
 
 		return count - 1 == dotsToWin;
@@ -154,7 +130,7 @@ public class CrossZiro {
 		int j = humanTurn[1];
 		boolean isDone = false;
 
-		if (!isDone && isCellValid(i - 1, j)) {
+		if (isCellValid(i - 1, j)) {
 			y = j;
 			x = i - 1;
 			isDone = true;
@@ -199,7 +175,6 @@ public class CrossZiro {
 		if (!isDone && isCellValid(i, j + 1)) {
 			y = j + 1;
 			x = i;
-			isDone = true;
 		}
 
 		System.out.println("Компьютер сделал ход в точку " + (x + 1) + " " + (y + 1));
