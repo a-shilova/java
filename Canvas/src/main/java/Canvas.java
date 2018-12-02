@@ -73,8 +73,8 @@ public class Canvas extends JFrame {
 		jp.add(getColorButton);
 		colorChangeFrame.add(jp);
 		colorChangeFrame.setModal(true);
-		colorChangeFrame.setVisible(true);
-		colorChangeFrame.setSize(630, 390);
+		colorChangeFrame.setMinimumSize(new Dimension(630, 390));
 		colorChangeFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		colorChangeFrame.setVisible(true);
 	}
 }
